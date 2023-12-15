@@ -25,8 +25,7 @@ struct WelcomeView: View {
 //                Spacer()
                 
                 // Button to get locations by courses
-                NavigationLink(destination: LocationsByCoursesView()) {
-                    Text("Get Locations by Courses")
+                NavigationLink(destination: CoursesListView(courses: ["Course 1", "Course 2", "Course 3"])) {                    Text("Get Locations by Courses")
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color.blue)
@@ -34,9 +33,10 @@ struct WelcomeView: View {
                         .cornerRadius(10)
                         .padding()
                 }
+
                 
                 // Button to get locations by department
-                NavigationLink(destination: LocationsByDepartmentView()) {
+                NavigationLink(destination: ContentView()) {
                     Text("Get Locations by Department")
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -51,13 +51,13 @@ struct WelcomeView: View {
     }
 }
 
-struct LocationsByCoursesView: View {
-    var body: some View {
-        Text("Locations by Courses")
-            .font(.title)
-            .padding()
-    }
-}
+//struct LocationsByCoursesView: View {
+//    var body: some View {
+//        Text("Locations by Courses")
+//            .font(.title)
+//            .padding()
+//    }
+//}
 
 struct LocationsByDepartmentView: View {
     var body: some View {
