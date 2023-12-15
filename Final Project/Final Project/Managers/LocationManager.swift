@@ -7,75 +7,75 @@
 
 import Foundation
 import MapKit
-import Observation
 
-enum LocationError: LocalizedError {
+enum LocationError: Error {
     case authorizationDenied
     case authorizationRestricted
     case unknownLocation
     case accessDenied
     case network
     case operationFailed
-    
-    var errorDescription: String? {
+
+    var errorDescription: String {
         switch self {
-            case .authorizationDenied:
-                return NSLocalizedString("Location access denied.", comment: "")
-            case .authorizationRestricted:
-                return NSLocalizedString("Location access restricted.", comment: "")
-            case .unknownLocation:
-                return NSLocalizedString("Unknown location.", comment: "")
-            case .accessDenied:
-                return NSLocalizedString("Access denied.", comment: "")
-            case .network:
-                return NSLocalizedString("Network failed.", comment: "")
-            case .operationFailed:
-                return NSLocalizedString("Operation failed.", comment: "")
+        case .authorizationDenied:
+            return "Location access denied."
+        case .authorizationRestricted:
+            return "Location access restricted."
+        case .unknownLocation:
+            return "Unknown location."
+        case .accessDenied:
+            return "Access denied."
+        case .network:
+            return "Network failed."
+        case .operationFailed:
+            return "Operation failed."
         }
     }
 }
 
-@Observable
-class LocationManager: NSObject, CLLocationManagerDelegate {
-    
-    let manager = CLLocationManager()
+class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+    private let manager = CLLocationManager()
     static let shared = LocationManager()
-    var error: LocationError? = nil
-    
-    var region: MKCoordinateRegion = MKCoordinateRegion()
-    
+    @Published var region: MKCoordinateRegion = MKCoordinateRegion()
+    var error: LocationError?
+
     private override init() {
         super.init()
-        self.manager.delegate = self
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        manager.requestWhenInUseAuthorization()
+    }
+
+    func start() {
+        manager.startUpdatingLocation()
     }
 }
 
 extension LocationManager {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locations.last.map {
-            region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude),
-                                                    span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        }
+        guard let location = locations.last else { return }
+        region = MKCoordinateRegion(center: location.coordinate,
+                                    span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     }
-    
+
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
-            case .notDetermined:
-                manager.requestWhenInUseAuthorization()
-            case .authorizedAlways, .authorizedWhenInUse:
-                manager.requestLocation()
-            case .denied:
-                error = .authorizationDenied
-            case .restricted:
-                error = .authorizationRestricted
-            @unknown default:
-                break
+        case .notDetermined:
+            manager.requestWhenInUseAuthorization()
+        case .authorizedAlways, .authorizedWhenInUse:
+            start()
+        case .denied:
+            error = .authorizationDenied
+        case .restricted:
+            error = .authorizationRestricted
+        @unknown default:
+            break
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        
+        // Handle the error accordingly
         if let clError = error as? CLError {
             switch clError.code {
                 case .locationUnknown:
@@ -89,6 +89,6 @@ extension LocationManager {
             }
         }
         
-    }
     
+    }
 }

@@ -13,7 +13,7 @@ struct PreviewData {
     
     static var neu: MKMapItem {
         
-        let coordinate = CLLocationCoordinate2D(latitude: 42.3399, longitude: -71.089)
+        let coordinate = CLLocationCoordinate2D(latitude: 42.33918801796435, longitude: -71.08824670331418)
         
         let addressDictionary: [String: Any] = [
             CNPostalAddressStreetKey: "360 Huntington Avenue",
