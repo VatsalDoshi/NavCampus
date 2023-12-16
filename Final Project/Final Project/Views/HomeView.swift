@@ -19,7 +19,7 @@ struct HomeView: View {
                         .cornerRadius(8)
                 }
 
-                NavigationLink(destination: CoursesListView(courses: ["Course 1", "Course 2", "Course 3"])) {
+                NavigationLink(destination: courseListApiView()) {
                     Text("Go to Courses List")
                         .padding()
                         .background(Color.green)

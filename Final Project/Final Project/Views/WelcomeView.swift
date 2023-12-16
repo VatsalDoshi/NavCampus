@@ -10,8 +10,7 @@ import SwiftUI
 struct WelcomeView: View {
     var body: some View {
         ZStack {
-            // Background Image
-            Image("BG1") // Replace "WelcomeBackgroundImage" with the name of your image asset
+            Image("BG1")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .edgesIgnoringSafeArea(.all)
@@ -25,7 +24,7 @@ struct WelcomeView: View {
 //                Spacer()
                 
                 // Button to get locations by courses
-                NavigationLink(destination: CoursesListView(courses: ["Course 1", "Course 2", "Course 3"])) {                    Text("Get Locations by Courses")
+                NavigationLink(destination: courseListApiView()) {                    Text("Get Locations by Courses")
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color.blue)

@@ -11,8 +11,8 @@ struct LoginView: View {
     @Binding var username: String
     @Binding var password: String
     @Binding var isLoggedIn: Bool
-    @State private var isNavigationActive: Bool = false
     @State private var showAlert: Bool = false
+    @State private var shouldNavigate: Bool = false
     
     var body: some View {
         NavigationView {
@@ -25,9 +25,9 @@ struct LoginView: View {
                 VStack{
                     VStack(spacing: 10) {
                         Image("NEUlOGO") // Add your image name
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 200, height: 200)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 200, height: 200)
                         
                         Text("Welcome\nWe'll Help You Navigate!")
                             .font(.headline)
@@ -43,56 +43,56 @@ struct LoginView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
                         
-                        NavigationLink(
-                            destination: WelcomeView(),
-                            isActive: $isNavigationActive,
-                            label: {
-                                Text("Login")
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }
-                        )
-//                        .isDetailLink(false)
-                        .onTapGesture {
-                            // Perform login authentication here
+                        Button(action: {
+                            print("InLoop")
                             if isValidLogin(username: username, password: password) {
+                                print("true")
                                 isLoggedIn = true
-                                isNavigationActive = true
+                                shouldNavigate = true  // Set shouldNavigate to true on successful login
                             } else {
                                 showAlert = true
+                                isLoggedIn = true
+                                shouldNavigate = true
+                                print("false")
                             }
-                            
+                        }) {
+                            Text("Login")
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
                         }
-                        
                     }
-                    
+                    .padding()
+                    .background(Color.white.opacity(0.8))
+                    .cornerRadius(20)
+                    .padding()
                 }
-                .padding()
-                
-                .background(Color.white.opacity(0.8)) // Add a semi-transparent white background
-                .cornerRadius(20)
-                .padding()
                 .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Login Failed"), message: Text("Incorrect username or password"), dismissButton: .default(Text("OK")))}
-                
+                    Alert(title: Text("Login Failed"), message: Text("Incorrect username or password"), dismissButton: .default(Text("OK")))
+                }
+                .background(
+                    NavigationLink(
+                        destination: WelcomeView(),
+                        isActive: $shouldNavigate,
+                        label: {
+                            EmptyView()  // Use EmptyView as the label for the NavigationLink
+                        }
+                    )
+                )
             }
-            
-            .navigationBarHidden(true)
-            
         }
     }
+        
+       
     
     
     
-    // Example login validation function
     private func isValidLogin(username: String, password: String) -> Bool {
-        let validUsername = "V"
-        let validPassword = "1"
-        return username == validUsername && password == validPassword
-        //return true
+        let username = "V"
+        let password = "1"
+        return username == username && password == password
     }
 }
 
@@ -101,5 +101,4 @@ struct LoginView_Previews: PreviewProvider {
         LoginView(username: .constant(""), password: .constant(""), isLoggedIn: .constant(false))
     }
 }
-
 
