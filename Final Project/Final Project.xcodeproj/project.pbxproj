@@ -29,6 +29,7 @@
 		C34A52852B2D259300B5575B /* courseListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A52842B2D259300B5575B /* courseListModel.swift */; };
 		C34A52872B2D272B00B5575B /* courseListApiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A52862B2D272B00B5575B /* courseListApiView.swift */; };
 		C34A528A2B2D27AC00B5575B /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A52892B2D27AC00B5575B /* CourseService.swift */; };
+		C34A528C2B2D2B8400B5575B /* CourseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34A528B2B2D2B8400B5575B /* CourseDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		C34A52842B2D259300B5575B /* courseListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = courseListModel.swift; sourceTree = "<group>"; };
 		C34A52862B2D272B00B5575B /* courseListApiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = courseListApiView.swift; sourceTree = "<group>"; };
 		C34A52892B2D27AC00B5575B /* CourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
+		C34A528B2B2D2B8400B5575B /* CourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				4614E5AE2B2C4A19002BB566 /* Login View.swift */,
 				4614E5B02B2C4A36002BB566 /* WelcomeView.swift */,
 				C34A52862B2D272B00B5575B /* courseListApiView.swift */,
+				C34A528B2B2D2B8400B5575B /* CourseDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				4614E5A92B2C0DA1002BB566 /* RouteMapView.swift in Sources */,
 				4614E59B2B2B9123002BB566 /* PlaceView.swift in Sources */,
 				4614E5852B2AF9C7002BB566 /* ContentView.swift in Sources */,
+				C34A528C2B2D2B8400B5575B /* CourseDetailView.swift in Sources */,
 				4614E5AD2B2C428E002BB566 /* HomeView.swift in Sources */,
 				C34A52852B2D259300B5575B /* courseListModel.swift in Sources */,
 				4614E5AB2B2C4243002BB566 /* CoursesListView.swift in Sources */,

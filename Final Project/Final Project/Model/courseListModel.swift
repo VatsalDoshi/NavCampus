@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Course: Identifiable, Decodable {
+struct Course: Identifiable, Decodable, Hashable {
     let id: String
     let courseCategory: String
     let courseName: String
@@ -15,4 +15,12 @@ struct Course: Identifiable, Decodable {
     let time: String
     let location: String
     let imageURL: String // URL for the course image
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: Course, rhs: Course) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
