@@ -11,7 +11,7 @@ import SwiftUI
 struct Final_ProjectApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginView(username: .constant(""), password: .constant(""), isLoggedIn: .constant(false))
+            LoginView( isLoggedIn: .constant(false))
         }
     }
 }

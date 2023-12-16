@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct LoginView: View {
-    @Binding var username: String
-    @Binding var password: String
+//    @Binding var username: String
+//    @Binding var password: String
+    @State private var username: String = ""  // Local state variable for the username
+    @State private var password: String = ""
     @Binding var isLoggedIn: Bool
     @State private var showAlert: Bool = false
     @State private var shouldNavigate: Bool = false
@@ -39,20 +41,24 @@ struct LoginView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
                         
+                        
                         SecureField("Password", text: $password)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
                         
+                        
                         Button(action: {
+                            print( "entered username:\(username)")
+                            print( "entered username:\(password)")
                             print("InLoop")
-                            if isValidLogin(username: username, password: password) {
+                            if isValidLogin(corUsername: username, corPassword: password) {
                                 print("true")
                                 isLoggedIn = true
                                 shouldNavigate = true  // Set shouldNavigate to true on successful login
                             } else {
                                 showAlert = true
-                                isLoggedIn = true
-                                shouldNavigate = true
+                                isLoggedIn = false
+                                shouldNavigate = false
                                 print("false")
                             }
                         }) {
@@ -89,16 +95,16 @@ struct LoginView: View {
     
     
     
-    private func isValidLogin(username: String, password: String) -> Bool {
-        let username = "V"
-        let password = "1"
-        return username == username && password == password
+    private func isValidLogin(corUsername: String, corPassword: String) -> Bool {
+        let validUsername = "V"
+        let validPassword = "1"
+        return corUsername == validUsername && corPassword == validPassword
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(username: .constant(""), password: .constant(""), isLoggedIn: .constant(false))
+        LoginView(isLoggedIn: .constant(false))
     }
 }
 

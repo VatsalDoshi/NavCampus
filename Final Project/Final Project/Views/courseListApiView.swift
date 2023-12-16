@@ -31,6 +31,7 @@ struct courseListApiView: View {
             }
             .listStyle(PlainListStyle())
             .navigationTitle("Courses")
+//            .background(Color.black)
             .onAppear {
                 fetchCourses()
             }
@@ -118,9 +119,14 @@ struct CourseCell: View {
         VStack(alignment: .leading) {
             Text(course.courseName)
                 .font(.headline)
+                .foregroundColor(.white)
             Text("Professor: \(course.professor)")
+                .foregroundColor(.white)
+            
             Text("Time: \(course.time)")
+                .foregroundColor(.white)
             Text("Location: \(course.location)")
+                .foregroundColor(.white)
 
             // Display course image using AsyncImage
             AsyncImage(url: URL(string: course.imageURL)) { phase in
@@ -151,6 +157,8 @@ struct CourseCell: View {
             }
         }
         .padding()
+        .background(Color.black) // Set the background color to black
+        .cornerRadius(10)
     }
 }
 

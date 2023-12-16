@@ -44,22 +44,27 @@ struct CourseDetailView: View {
 
                 Text(course.courseName)
                     .font(.largeTitle)
+                    .foregroundColor(.white)
                     .padding()
                 
                 Text(course.courseCategory)
                     .font(.headline)
+                    .foregroundColor(.white)
                     .padding()
 
                 Text("Professor: \(course.professor)")
                     .font(.headline)
+                    .foregroundColor(.white)
                     .padding()
 
                 Text("Time: \(course.time)")
                     .font(.headline)
+                    .foregroundColor(.white)
                     .padding()
 
                 Text("Location: \(course.location)")
                     .font(.headline)
+                    .foregroundColor(.white)
                     .padding()
 
                 // Additional details or components can be added here
@@ -76,15 +81,18 @@ struct CourseDetailView: View {
                     }
                 )
                 .padding()
+                
 
                 Spacer()
             }
             .padding()
-            .background(Color.white)
+//            .background(Color.white)
             .cornerRadius(20)
             .padding()
             .navigationTitle(course.courseName)
+            .background(Color.black)
         }
+               
     }
 }
 
