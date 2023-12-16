@@ -40,10 +40,14 @@ struct CourseDetailView: View {
                             .cornerRadius(10)
                     }
                 }
-                .padding()
+            
 
                 Text(course.courseName)
                     .font(.largeTitle)
+                    .padding()
+                
+                Text(course.courseCategory)
+                    .font(.headline)
                     .padding()
 
                 Text("Professor: \(course.professor)")
