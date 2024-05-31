@@ -10,7 +10,6 @@ Campus Navigation is an iOS application designed specifically for Northeastern U
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Data Synchronization](#data-synchronization)
-- [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
@@ -61,8 +60,6 @@ Campus Navigation is an iOS application designed specifically for Northeastern U
 - Firebase integration enables real-time updates and dynamic routing, enhancing navigation precision.
 - CoreData ensures local data storage, providing offline capabilities and faster access to frequently used data.
 
-## Screenshots
-*Add screenshots of the app here*
 
 ## Contributing
 Contributions are welcome! Please follow these steps to contribute:
